@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: u1
+  namespace: front-app
+  labels:
+    app: front-app
+    env: demo
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: front-app
+  template:
+    metadata:
+      labels:
+        app: front-app
+        env: demo
+    spec:
+      containers:
+      - name: front-app
+        image: phonebook-app:latest
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - name: app-config
+          mountPath: /app/config
+      volumes:
+      - name: app-config
+        configMap:
+          name: app-config
+          items:
+          - keys: backend-url
+            path: .env
+
