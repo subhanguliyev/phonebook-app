@@ -9,13 +9,9 @@ pipeline {
                 deleteDir()
                 git branch: 'master',
                     url   : 'https://github.com/subhanguliyev/phonebook-app'
-                checkout([$class: 'GitSCM',
-                          branches: [[name: '*/master']],
-                          extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'phonebook-app']],
-                          userRemoteConfigs: [[credentialsId: 'github', url: 'git@github.com:subhanguliyev/phonebook-app.git']]
-                          ])
             }
         }
+	}
         stage('Login to DockerHub') {
 			steps {
 				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
