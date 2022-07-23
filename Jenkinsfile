@@ -8,11 +8,11 @@ pipeline {
             steps {
                 deleteDir()
                 git branch: 'master',
-                    url   : 'https://github.com/alanbchristie/PySimple.git'
+                    url   : 'https://github.com/subhanguliyev/phonebook-app'
                 checkout([$class: 'GitSCM',
-                          branches: [[name: '*/main']],
-                          extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'phonebook-simple-app']],
-                          userRemoteConfigs: [[credentialsId: 'github', url: 'git@github.com:vhaidamaka/phonebook-simple-app.git']]
+                          branches: [[name: '*/master']],
+                          extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'phonebook-app']],
+                          userRemoteConfigs: [[credentialsId: 'github', url: 'git@github.com:subhanguliyev/phonebook-app.git']]
                           ])
             }
         }
@@ -21,23 +21,23 @@ pipeline {
 				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
 			}
 		}
-        stage('Build PySimple docker image') {
+        stage('Build phonebook-app docker image') {
             steps {
                 sh "ls -lh"
-                sh "docker build -t localhost:5006/pysimple:${BUILD_NUMBER} ."
+                sh "docker build -t localhost:5006/phonebook-app:${BUILD_NUMBER} ."
             }
         }
         stage('Push to docker registry') {
             steps {
-                sh "docker push localhost:5006/pysimple:${BUILD_NUMBER}"
+                sh "docker push localhost:5006/phonebook-app:${BUILD_NUMBER}"
             }
         }
         stage('Update k8s deployment') {
             steps {
                 sh """
-                    sed -i -e "/^\\s*image:\\s.*/s/pysimple:.*/pysimple:${BUILD_NUMBER}/g" phonebook-simple-app/k8s/front/deployment.yaml
+                    sed -i -e "/^\\s*image:\\s.*/s/phonebook-app:.*/phonebook-app:${BUILD_NUMBER}/g" phonebook-app/k8s/front/deployment.yaml
                 """
-                sh "kubectl apply -f phonebook-simple-app/k8s/front/"
+                sh "kubectl apply -f phonebook-app/k8s/front/"
             }
         }
 
