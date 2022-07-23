@@ -9,6 +9,11 @@ pipeline {
                 deleteDir()
                 git branch: 'master',
                     url   : 'https://github.com/subhanguliyev/phonebook-app'
+		checkout([$class: 'GitSCM',
+                          branches: [[name: '*/main']],
+                          extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'phonebook-simple-app']],
+                          userRemoteConfigs: [[credentialsId: 'github', url: 'git@github.com:vhaidamaka/phonebook-simple-app.git']]
+                          ])
             }
         }
 	}
