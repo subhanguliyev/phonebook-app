@@ -20,7 +20,7 @@ pipeline {
         stage('Build phonebook-app docker image') {
             steps {
                 sh "ls -lh"
-                sh "docker build -t localhost:5006/phonebook-app:${BUILD_NUMBER} ."
+                sh "docker build -t localhost:5000/phonebook-app:${BUILD_NUMBER} ."
             }
         }
         stage('Push to docker registry') {

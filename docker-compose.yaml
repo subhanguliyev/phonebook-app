@@ -13,7 +13,7 @@ services:
     hostname: jenkins
     networks:
       minikube:
-        ipv4_address: 192.168.49.3
+        ipv4_address: 192.168.49.4
     volumes:
       - "./data:/var/jenkins_home"
       - /var/run/docker.sock:/var/run/docker.sock
@@ -25,10 +25,19 @@ services:
       - "JENKINS_AGENT_SSH_PUBKEY=ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDP2MFzMAAecmr38vktRjAG/0YrJIxUaH35e4ucUIxSni6KTxoPAimIyzv/QE0RrPSLCE31eDgJeY/xgWxHGsLjM+dQnVO4Ew+C0C0faaZTyJ4fB8AXyerq6yd4v2CdR1pYAQvlblvj26JDrqi8sYofgjk5jCjO1Hu7IKn0FAMMDcWWMLJXgJFP8HfVrjodLayRaL1TTH8I2jiz9TpECL0qkvrCJjjdIkdKkkGxRpg8tIkDEid1C4u3AtIXuIbRuqINgFmx1wbWeEuMFy8kTzTiU8XtptiCgWLcM8w+iIZApDPq4uiy75GBGLUmfRVpJbjqCYmOvtTLKNkiuwN4V1l9 shehriyar@DESKTOP-FHR71FH"
     networks:
       minikube:
-        ipv4_address: 192.168.49.4
+        ipv4_address: 192.168.49.3
     volumes:
       - "./kubectl-config:/home/jenkins/.kube"
       - /var/run/docker.sock:/var/run/docker.sock
+  registry:
+    image: registry:2
+    environment:
+      - "REGISTRY_HTTP_ADDR=192.168.49.5:5000"
+    ports:
+      - "5000:5000"
+    networks:
+      minikube:
+        ipv4_address: 192.168.49.5
 
 networks:
     minikube:
