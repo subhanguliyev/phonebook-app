@@ -4,6 +4,6 @@ metadata:
   name: app-config
   namespace: front-app
 data:
-  backend-url: localhost:8080
+  backend-url: localhost:8000
   var1: test1
   var2: test2

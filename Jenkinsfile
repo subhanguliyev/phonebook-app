@@ -8,7 +8,7 @@ pipeline {
             steps {
                 deleteDir()
                 git branch: 'master',
-		git credentialsId: 'github', url: 'https://github.com/subhanguliyev/phonebook-app'
+		    url: 'https://github.com/subhanguliyev/phonebook-app'
 		echo 'Git Checkout Completed'
             }
         }
@@ -22,22 +22,22 @@ pipeline {
         stage('Build phonebook-app docker image') {
             steps {
                 sh "ls -lh"
-                sh "sudo docker build -t localhost:5000/phonebook-app:${BUILD_NUMBER} ."
+                sh "sudo docker build -t 127.0.0.1:5000/phonebook-app:${BUILD_NUMBER} ."
 		echo 'Build Image Completed'
             }
         }
         stage('Push to docker registry') {
             steps {
-                sh "sudo docker push localhost:5000/phonebook-app:${BUILD_NUMBER}"
+                sh "sudo docker push 127.0.0.1:5000/phonebook-app:${BUILD_NUMBER}"
 		echo 'Push Image Completed'
             }
         }
         stage('Update k8s deployment') {
             steps {
                 sh """
-                    sed -i -e "/^\\s*image:\\s.*/s/phonebook-app:.*/phonebook-app:${BUILD_NUMBER}/g" phonebook-app/k8s/front/deployment.yaml
+                    sed -i -e "/^\\s*image:\\s.*/s/phonebook-app:.*/phonebook-app:${BUILD_NUMBER}/g" final_project/kubernetes/front/deployment.yaml
                 """
-                sh "kubectl apply -f phonebook-app/kubernetes/front/"
+                sh "kubectl apply -f final_project/kubernetes/front/"
             }
         }
 

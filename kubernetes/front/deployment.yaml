@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: u1
+  name: phonebook
   namespace: front-app
   labels:
     app: front-app
@@ -19,9 +19,9 @@ spec:
     spec:
       containers:
       - name: front-app
-        image: phonebook-app:latest
+        image: 192.168.49.5:5000/phonebook-app
         ports:
-        - containerPort: 8080
+        - containerPort: 8000
         volumeMounts:
         - name: app-config
           mountPath: /app/config
@@ -30,6 +30,6 @@ spec:
         configMap:
           name: app-config
           items:
-          - keys: backend-url
+          - key: backend-url
             path: .env
 
