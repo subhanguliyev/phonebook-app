@@ -21,7 +21,7 @@ pipeline {
 	
         stage('Login to DockerHub') {
 			steps {
-			        sh 'chmod 666 /var/run/docker.sock'
+			        sh 'sudo chmod 666 /var/run/docker.sock'
 				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
 				echo 'Login Completed'
 			}
