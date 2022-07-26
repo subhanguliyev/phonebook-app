@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: front-app
-        image: 192.168.49.5:5000/phonebook-app
+        image: 127.0.0.1:5000/phonebook-app
         ports:
         - containerPort: 8000
         volumeMounts:
