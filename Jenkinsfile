@@ -30,7 +30,7 @@ pipeline {
             steps {
                 sh "docker images"
                 sh "ls -lh"
-		sh "docker build -t 127.0.0.1:5000/phonebook-app ."
+		sh ": docker build -t 127.0.0.1:5000/phonebook-app ."
 		echo 'Build Image Completed'
             }
         }

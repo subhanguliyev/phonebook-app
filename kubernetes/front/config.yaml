@@ -2,8 +2,8 @@ kind: ConfigMap
 apiVersion: v1
 metadata:
   name: app-config
-  namespace: front-app
+  namespace: phonebook-app
 data:
-  backend-url: localhost:8000
+  backend-url: localhost:8080
   var1: test1
   var2: test2
