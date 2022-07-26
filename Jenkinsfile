@@ -36,7 +36,7 @@ pipeline {
         }
         stage('Push to docker registry') {
             steps {
-                sh "docker push 127.0.0.1:5000/phonebook-app"
+                sh "docker push 127.0.0.1:5000/phonebook-app:latest"
 		echo 'Push Image Completed'
             }
         }
