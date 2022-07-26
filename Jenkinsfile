@@ -22,7 +22,7 @@ pipeline {
         stage('Login to DockerHub') {
 			steps {
 			        sh(script: """#!/bin/bash
-                                   su -c chmod 666 /var/run/docker.sock
+                                   su -c chmod +rw /var/run/docker.sock
                                """)
 
 				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
