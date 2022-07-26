@@ -7,7 +7,8 @@ pipeline {
         stage("Git checkout") {
             steps {
                 deleteDir()
-                git branch: 'master',
+                sh 'ls -lh'
+		git branch: 'master',
 		    url: 'https://github.com/subhanguliyev/phonebook-app'
 		checkout([$class: 'GitSCM',
                           branches: [[name: '*/master']],
@@ -41,9 +42,9 @@ pipeline {
         stage('Update kubernetes deployment') {
             steps {
                 sh """
-                    sed -i -e "/^\\s*image:\\s.*/s/phonebook-app:.*/phonebook-app:latest/g" phonebook/kubernetes/front/deployment.yaml
+                    # sed -i -e "/^\\s*image:\\s.*/s/phonebook-app:.*/phonebook-app:latest/g" phonebook/kubernetes/front/deployment.yaml
                 """
-                sh "kubectl apply -f phonebook/kubernetes/front/"
+                sh "kubectl apply -f phonebook/kubernetes/front/deployment.yaml"
             }
         }
 
