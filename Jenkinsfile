@@ -41,9 +41,6 @@ pipeline {
         }
         stage('Update kubernetes deployment') {
             steps {
-                sh """
-                    sed -i -e "/^\\s*image:\\s.*/s/phonebook-app:.*/phonebook-app/g" phonebook/kubernetes/front/deployment.yaml
-                """
                 sh "kubectl apply -f phonebook/kubernetes/front/deployment.yaml"
             }
         }
