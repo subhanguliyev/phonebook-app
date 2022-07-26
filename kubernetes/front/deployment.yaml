@@ -21,7 +21,7 @@ spec:
       - name: front-app
         image: 127.0.0.1:5000/phonebook-app
         ports:
-        - containerPort: 8000
+        - containerPort: 8080
         volumeMounts:
         - name: app-config
           mountPath: /app/config

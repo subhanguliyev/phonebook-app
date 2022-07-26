@@ -29,7 +29,7 @@ pipeline {
         stage('Build phonebook-app docker image') {
             steps {
                 sh "docker images"
-                sh "docker build -t 127.0.0.1:5000/phonebook-app:latest ."
+                sh "docker build -t 127.0.0.1:5000/phonebook-app ."
 		echo 'Build Image Completed'
             }
         }
@@ -42,7 +42,7 @@ pipeline {
         stage('Update kubernetes deployment') {
             steps {
                 sh """
-                    # sed -i -e "/^\\s*image:\\s.*/s/phonebook-app:.*/phonebook-app:latest/g" phonebook/kubernetes/front/deployment.yaml
+                    sed -i -e "/^\\s*image:\\s.*/s/phonebook-app:.*/phonebook-app/g" phonebook/kubernetes/front/deployment.yaml
                 """
                 sh "kubectl apply -f phonebook/kubernetes/front/deployment.yaml"
             }
