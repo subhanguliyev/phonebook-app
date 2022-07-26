@@ -10,7 +10,7 @@ pipeline {
                 git branch: 'master',
 		    url: 'https://github.com/subhanguliyev/phonebook-app'
 		checkout([$class: 'GitSCM',
-                          branches: [[name: '*/main']],
+                          branches: [[name: '*/master']],
                           extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'phonebook-app']],
                           userRemoteConfigs: [[credentialsId: 'github', url: 'https://github.com/subhanguliyev/phonebook-app']]
                           ])
