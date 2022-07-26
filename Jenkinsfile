@@ -34,7 +34,7 @@ pipeline {
         }
         stage('Push to docker registry') {
             steps {
-                sh "docker push 127.0.0.1:5000/phonebook-app:latest"
+                sh "docker push 127.0.0.1:5000/phonebook-app"
 		echo 'Push Image Completed'
             }
         }
@@ -43,7 +43,7 @@ pipeline {
                 sh """
                     sed -i -e "/^\\s*image:\\s.*/s/phonebook-app:.*/phonebook-app:${BUILD_NUMBER}/g" final_project/kubernetes/front/deployment.yaml
                 """
-                sh "kubectl apply -f final_project/kubernetes/front/"
+                sh "kubectl apply -f phonebook/kubernetes/front/"
             }
         }
 
