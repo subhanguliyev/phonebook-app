@@ -28,7 +28,7 @@ pipeline {
         stage('Build phonebook-app docker image') {
             steps {
                 sh "ls -lh"
-                sh "docker build -t 127.0.0.1:5000/phonebook-app:${BUILD_NUMBER} ."
+                sh "docker build -t 127.0.0.1:5000/phonebook-app:latest ."
 		echo 'Build Image Completed'
             }
         }
