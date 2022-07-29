@@ -7,7 +7,6 @@ pipeline {
         stage("Git checkout") {
             steps {
                 deleteDir()
-                sh 'ls -lh'
 		git branch: 'master',
 		    url: 'https://github.com/subhanguliyev/phonebook-app'
 		checkout([$class: 'GitSCM',
