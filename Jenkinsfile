@@ -3,6 +3,8 @@ pipeline {
     environment {
     	PATH = "C:\\Program Files\\Git\\usr\\bin;C:\\Program Files\\Git\\bin;${env.PATH}"
         DOCKERHUB_CREDENTIALS= credentials('dockerhubcredentials')
+	if (isUnix()) --> sh "command"
+	else --> bat "command"
 	}
     stages {
         stage("Git checkout") {
