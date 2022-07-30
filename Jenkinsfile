@@ -1,7 +1,6 @@
 pipeline {
     agent { label 'slave1' }
     environment {
-    	PATH = "/hot/new/bin:${env.PATH}"
         DOCKERHUB_CREDENTIALS= credentials('dockerhubcredentials')
 	}
     stages {
