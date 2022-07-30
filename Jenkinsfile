@@ -1,7 +1,6 @@
 pipeline {
     agent { label 'slave1' }
     environment {
-    	PATH = "C:\\Program Files\\Git\\usr\\bin;C:\\Program Files\\Git\\bin;${env.PATH}"
         DOCKERHUB_CREDENTIALS= credentials('dockerhubcredentials')
 	}
     stages {
@@ -22,7 +21,7 @@ pipeline {
 	
         stage('Login to DockerHub') {
 			steps {
-				bat 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
 				echo 'Login Completed'
 			}
 		}
