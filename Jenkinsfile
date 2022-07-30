@@ -18,7 +18,10 @@ pipeline {
 		echo 'Git Checkout Completed'
             }
         }
-	
+	stage('Initialize'){
+        	def dockerHome = tool 'myDocker'
+        	env.PATH = "${dockerHome}/bin:${env.PATH}"
+    	}
         stage('Login to DockerHub') {
 			steps {
 				echo "PATH is: ${env.PATH}"
