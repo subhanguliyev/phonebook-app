@@ -1,7 +1,6 @@
 pipeline {
     agent { label 'slave1' }
     environment {
-    	PATH= "C:\Users\squ_a\AppData\Local\Packages\CanonicalGroupLimited.UbuntuonWindows_79rhkp1fndgsc\LocalState\rootfs\home\my_ubuntu"
         DOCKERHUB_CREDENTIALS= credentials('dockerhubcredentials')
 	}
     stages {
