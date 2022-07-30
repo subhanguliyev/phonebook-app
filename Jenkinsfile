@@ -19,10 +19,13 @@ pipeline {
             }
         }
 	stage('Initialize'){
-        	script {
-			def dockerHome = tool 'MyDocker'
-                	env.PATH = "${dockerHome}/bin:${env.PATH}" 
+        	steps {
+			script{
+				def dockerHome = tool 'MyDocker'
+                        	env.PATH = "${dockerHome}/bin:${env.PATH}"
 			}
+			 
+		}
 	}
         stage('Login to DockerHub') {
 			steps {
