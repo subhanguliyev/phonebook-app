@@ -1,6 +1,7 @@
 pipeline {
     agent { label 'slave1' }
     environment {
+    	PATH = "/hot/new/bin:${env.PATH}"
         DOCKERHUB_CREDENTIALS= credentials('dockerhubcredentials')
 	}
     stages {
@@ -21,6 +22,7 @@ pipeline {
 	
         stage('Login to DockerHub') {
 			steps {
+				echo "PATH is: ${env.PATH}"
 				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
 				echo 'Login Completed'
 			}
