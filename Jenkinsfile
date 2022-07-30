@@ -1,6 +1,7 @@
 pipeline {
     agent { label 'slave1' }
     environment {
+    	PATH='C:\Program Files\Git\bin'
         DOCKERHUB_CREDENTIALS= credentials('dockerhubcredentials')
 	}
     stages {
