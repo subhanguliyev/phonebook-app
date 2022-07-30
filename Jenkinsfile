@@ -21,8 +21,8 @@ pipeline {
 	stage('Initialize'){
         	steps {
 			def dockerHome = tool 'MyDocker'
-                	env.PATH = "${dockerHome}/bin:${env.PATH}"
-    		}
+                	env.PATH = "${dockerHome}/bin:${env.PATH}" 
+			}
 	}
         stage('Login to DockerHub') {
 			steps {
@@ -30,7 +30,7 @@ pipeline {
 				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
 				echo 'Login Completed'
 			}
-		}
+	}
         stage('Build phonebook-app docker image') {
             steps {
                 sh "docker images"
