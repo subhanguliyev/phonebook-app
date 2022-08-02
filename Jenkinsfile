@@ -18,16 +18,6 @@ pipeline {
 		echo 'Git Checkout Completed'
             }
         }
-	stage('python install') {
-            steps {
-                sh 'choco install python3'
-                }
-        }
-	stage('requirements install') {
-      	    steps {
-        	sh 'pip install -r requirements.txt'
-      		}
-        }
 	 stage('Testing app') {
             steps {
                 sh "cd /jenkins/workspace/phonebook/tests"
