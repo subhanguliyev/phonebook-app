@@ -23,6 +23,7 @@ pipeline {
                 script{
                         def pythonHome = tool 'MyPython'
                         env.PATH = "${pythonHome}/bin:${env.PATH}"
+			echo 'Python init'
                         }
 
                 }
@@ -31,7 +32,7 @@ pipeline {
 	 stage('Testing app') {
             steps {
 	    	echo "PATH is: ${env.PATH}"
-		sh "python -m pytest test_app.py"
+		sh "python -m pytest jenkins/workspace/phonebook/tests/test_app.py"
 		echo 'Test Completed'
                 }
         }
@@ -41,6 +42,7 @@ pipeline {
 		script{
 			def dockerHome = tool 'MyDocker'
                         env.PATH = "${dockerHome}/bin:${env.PATH}"
+			echo 'Docker init'
 			}
 			 
 		}
@@ -68,7 +70,8 @@ pipeline {
         }
         stage('Update kubernetes deployment') {
             steps{
-                sh "kubectl apply -f phonebook/kubernetes/front/deployment.yaml"
+                sh "kubectl apply -f jenkins/workspace/phonebook/kubernetes/front/deployment.yaml"
+		echo 'K8s updated'
             }
         }
 
