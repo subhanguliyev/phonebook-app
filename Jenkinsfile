@@ -18,12 +18,17 @@ pipeline {
 		echo 'Git Checkout Completed'
             }
         }
+	stage('requirements install') {
+      	    steps {
+        	sh 'pip install -r requirements.txt'
+      		}
+        }
 	 stage('Testing app') {
             steps {
                 sh "cd C:/jenkins/workspace/phonebook/tests"
-		sh "pytest -m test_app.py"
+		sh "python -m pytest test_app.py"
 		echo 'Test Completed'
-            }
+                }
         }
 
 	stage('Initialize Docker'){
