@@ -31,11 +31,9 @@ pipeline {
 
 	 stage('Testing app') {
             steps {
-	    	withEnv(["PATH+EXTRA=$STUFF"]){
-		sh "python -m pytest jenkins/workspace/phonebook/tests/test_app.py"
+		sh "python -m pytest test_app.py"
 		echo 'Test Completed'
                 }
-	     }
         }
 
 	stage('Initialize Docker'){
