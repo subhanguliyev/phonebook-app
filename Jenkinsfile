@@ -20,7 +20,7 @@ pipeline {
         }
 	 stage('Testing app') {
             steps {
-                sh "cd phonebook/tests"
+                sh "cd C:/jenkins/workspace/phonebook/tests"
 		sh "pytest -m test_app.py"
 		echo 'Test Completed'
             }
