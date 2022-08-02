@@ -25,7 +25,7 @@ pipeline {
         }
 	 stage('Testing app') {
             steps {
-                sh "cd C:/jenkins/workspace/phonebook/tests"
+                sh "cd /jenkins/workspace/phonebook/tests"
 		sh "python -m pytest test_app.py"
 		echo 'Test Completed'
                 }
@@ -62,8 +62,9 @@ pipeline {
             }
         }
         stage('Update kubernetes deployment') {
-            steps {
-                sh "kubectl apply -f phonebook/kubernetes/front/deployment.yaml"
+            steps{
+	    	sh "cd /jenkins/workspace/phonebook/kubernetes/front
+                sh "kubectl apply -f deployment.yaml"
             }
         }
 
