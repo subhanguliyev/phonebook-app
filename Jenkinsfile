@@ -18,14 +18,22 @@ pipeline {
 		echo 'Git Checkout Completed'
             }
         }
-	stage('Initialize'){
-        	steps {
-			script{
-				def dockerHome = tool 'MyDocker'
-                        	env.PATH = "${dockerHome}/bin:${env.PATH}"
-			}
-			 
+	 stage('Testing app') {
+            steps {
+                sh "cd phonebook/tests"
+		sh "pytest -m test_app.py"
+		echo 'Test Completed'
+            }
+        }
+
+	stage('Initialize Docker'){
+            steps {
+		script{
+			def dockerHome = tool 'MyDocker'
+                        env.PATH = "${dockerHome}/bin:${env.PATH}"
 		}
+			 
+	}
 	}
         stage('Login to DockerHub') {
 			steps {
