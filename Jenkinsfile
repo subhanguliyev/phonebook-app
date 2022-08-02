@@ -1,6 +1,8 @@
 pipeline {
     agent { label 'slave1' }
     environment {
+    	GOPATH = "$WORKSPACE/gopath/bin"
+        PATH = "$GOPATH/bin:$PATH"
         DOCKERHUB_CREDENTIALS= credentials('dockerhubcredentials')
 	}
     stages {
@@ -31,10 +33,11 @@ pipeline {
 
 	 stage('Testing app') {
             steps {
-	    	echo "PATH is: ${env.PATH}"
+	    	withEnv(["PATH+EXTRA=$STUFF"]){
 		sh "python -m pytest jenkins/workspace/phonebook/tests/test_app.py"
 		echo 'Test Completed'
                 }
+	     }
         }
 
 	stage('Initialize Docker'){
