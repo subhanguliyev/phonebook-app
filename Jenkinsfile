@@ -1,8 +1,6 @@
 pipeline {
     agent { label 'slave1' }
     environment {
-    	GOPATH = "$WORKSPACE/gopath/bin"
-        PATH = "$GOPATH/bin:$PATH"
         DOCKERHUB_CREDENTIALS= credentials('dockerhubcredentials')
 	}
     stages {
