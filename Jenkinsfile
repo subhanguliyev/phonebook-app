@@ -63,7 +63,7 @@ pipeline {
         }
         stage('Update kubernetes deployment') {
             steps{
-	    	sh "cd /jenkins/workspace/phonebook/kubernetes/front
+	    	sh "cd /jenkins/workspace/phonebook/kubernetes/front"
                 sh "kubectl apply -f deployment.yaml"
             }
         }
