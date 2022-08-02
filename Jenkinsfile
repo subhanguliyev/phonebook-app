@@ -1,6 +1,7 @@
 pipeline {
     agent { label 'slave1' }
     environment {
+    	STUFF = "${MTI_HOME}/linux:${MTI_HOME}/bin:${QUARTUS_HOME}/bin:${DCP_LOC}/bin"
         DOCKERHUB_CREDENTIALS= credentials('dockerhubcredentials')
 	}
     stages {
@@ -31,8 +32,10 @@ pipeline {
 
 	 stage('Testing app') {
             steps {
-		sh "python -m pytest test_app.py"
-		echo 'Test Completed'
+		withEnv(["PATH+EXTRA=$STUFF"]) {
+			sh "python -m pytest test_app.py"
+			echo 'Test Completed'
+			}
                 }
         }
 
