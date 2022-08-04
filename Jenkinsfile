@@ -30,12 +30,13 @@ pipeline {
         }
 	 stage('Testing app') {
              steps {
-		 dir('sources')
+		 dir('sources') {
 		    script {
 			    sh "print("Test 123", flush=True)"
 		            echo 'Test Completed'
-                	}
-	             }
+                	   }
+		      }
+	         }
         }
 	stage('Initialize Docker'){
             steps {
