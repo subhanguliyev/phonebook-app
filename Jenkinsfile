@@ -28,14 +28,14 @@ pipeline {
 
                 }
         }
-
 	 stage('Testing app') {
             steps {
-		sh "print("Test 123", flush=True)"
-		echo 'Test Completed'
-                }
+		scripts { 
+			sh "print("Test 123", flush=True)"
+			echo 'Test Completed'
+                	}
+	        }
         }
-
 	stage('Initialize Docker'){
             steps {
 		script{
