@@ -32,7 +32,7 @@ pipeline {
              steps {
 		 dir('sources') {
 		    script {
-			    sh "print("Test 123", flush=True)"
+			    sh '''print("Test 123", flush=True)'''
 		            echo 'Test Completed'
                 	   }
 		      }
