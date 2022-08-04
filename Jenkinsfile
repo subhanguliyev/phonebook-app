@@ -31,8 +31,8 @@ pipeline {
 
 	 stage('Testing app') {
             steps {
-			sh "print("Test 123", flush=True)"
-			echo 'Test Completed'
+		sh "print("Test 123", flush=True)"
+		echo 'Test Completed'
                 }
         }
 
