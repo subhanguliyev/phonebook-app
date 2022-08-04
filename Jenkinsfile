@@ -31,7 +31,7 @@ pipeline {
 	 stage('Testing app') {
             steps {
 		script { 
-		        sh "print("Test 123", flush=True)"
+		        sh "python -m pytest test_app.py"
 			echo 'Test Completed'
                 	}
 	        }
