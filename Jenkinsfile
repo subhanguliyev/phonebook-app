@@ -31,8 +31,6 @@ pipeline {
 	 stage('Testing app') {
             steps {
 		script {
-			sh "pip3 --install --upgrade pip"
-			sh "pip3 install numpy pytest"
 			sh "python -m pytest test_app.py"
 		        echo 'Test Completed'
                 	}
