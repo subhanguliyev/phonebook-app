@@ -23,7 +23,7 @@ pipeline {
                 script{
                         def pythonHome = tool 'MyPython'
                         env.PATH = "${pythonHome}/bin:${env.PATH}"
-			echo 'Python init'
+			echo 'Python initialized'
                         }
 
                 }
@@ -31,9 +31,9 @@ pipeline {
 	 stage('Testing app') {
             steps {
 		script {
-			pip3 --install --upgrade pip
-			pip3 install numpy pytest
-			python -m pytest test_app.py
+			sh "pip3 --install --upgrade pip"
+			sh "pip3 install numpy pytest"
+			sh "python -m pytest test_app.py"
 		        echo 'Test Completed'
                 	}
 	        }
