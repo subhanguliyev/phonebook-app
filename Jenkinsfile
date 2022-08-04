@@ -30,8 +30,8 @@ pipeline {
         }
 	 stage('Testing app') {
             steps {
-		scripts { 
-			sh "print("Test 123", flush=True)"
+		script { 
+		        sh "print("Test 123", flush=True)"
 			echo 'Test Completed'
                 	}
 	        }
