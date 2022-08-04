@@ -29,14 +29,13 @@ pipeline {
                 }
         }
 	 stage('Testing app') {
-	     dir('sources') {
-                steps {
+             steps {
+		 dir('sources')
 		    script {
 			    sh "python -m pytest test_app.py"
 		            echo 'Test Completed'
                 	}
 	             }
-	         }
         }
 	stage('Initialize Docker'){
             steps {
