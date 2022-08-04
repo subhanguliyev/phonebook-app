@@ -32,10 +32,11 @@ pipeline {
              steps {
 		 dir('tests') {
 		    script {
-			    sh "python -m pytest test_app.py"
-		            echo 'Test Completed'
-                	   }
-		      }
+		    	sh "install requiremets.txt"
+			sh "python -m pytest test_app.py"
+		        echo 'Test Completed'
+                	}
+		    }
 	         }
         }
 	stage('Initialize Docker'){
