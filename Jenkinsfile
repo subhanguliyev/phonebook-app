@@ -72,9 +72,13 @@ pipeline {
         }
         stage('Update kubernetes deployment') {
             steps{
-                sh "kubectl apply -f jenkins/workspace/phonebook/kubernetes/front/deployment.yaml"
-		echo 'K8s updated'
-            }
+	    	dir('kubernetes'){
+		   script {
+                	sh "kubectl apply -f front/deployment.yaml"
+			echo 'K8s updated'
+			}
+            	     }
+	    }
         }
 
     }
