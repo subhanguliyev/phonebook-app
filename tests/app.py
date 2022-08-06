@@ -63,7 +63,7 @@ def insert_person(name, number):
     cursor.execute(query)
     row = cursor.fetchone()
     if row is not None:
-        return f'Person with name {row[1].title()} already exits.'
+        return f'Person with name {row[1].title()} already exist.'
     insert = f"""
     INSERT INTO phonebook.phonebook (name, number)
     VALUES ('{name.strip().lower()}', '{number}');

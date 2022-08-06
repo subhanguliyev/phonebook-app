@@ -1,11 +1,18 @@
 from app import *
 
 
-def test_insert_persons():
+def test_insert_persons_exist():
     name = 'Coco'
     number = 654
     result = insert_person(name, number)
-    assert result == 'Person with name Coco already exits.'
+    assert result == 'Person with name Coco already exist.'
+
+
+def test_insert_persons():
+    name = 'Jojo'
+    number = 555
+    result = insert_person(name, number)
+    assert result == f'Person {name.strip().title()} added to Phonebook successfully'
 
 
 def test_find_persons_yes():
