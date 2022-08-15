@@ -59,13 +59,13 @@ pipeline {
             steps {
                 sh "docker images"
                 sh "ls -lh"
-		sh "docker build -t 127.0.0.1:5000/phonebook-app ."
+		sh "docker build -t 127.0.0.1:5000/phonebook-app:${BUILD_NUMBER} ."
 		echo 'Build Image Completed'
             }
         }
         stage('Push to docker registry') {
             steps {
-                sh "docker push 127.0.0.1:5000/phonebook-app:latest"
+                sh "docker push 127.0.0.1:5000/phonebook-app:${BUILD_NUMBER}"
 		echo 'Push Image Completed'
             }
         }
@@ -73,6 +73,9 @@ pipeline {
             steps{
 	    	dir('kubernetes'){
 		   script {
+		   	sh """
+                    		sed -i -e "/^\\s*image:\\s.*/s/phonebook-app:.*/phonebook-app:${BUILD_NUMBER}/g" front/deployment.yaml
+                	"""
                 	sh "kubectl apply -f front/deployment.yaml"
 			echo 'K8s updated'
 			}
