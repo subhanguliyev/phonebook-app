@@ -37,9 +37,18 @@ pipeline {
 		    }
 	         }
         }
+	 stage('Initialize Docker'){
+            steps {
+                script{
+                        def dockerHome = tool 'MyDocker'
+                        env.PATH = "${dockerHome}/bin:${env.PATH}"
+                        echo 'Docker init'
+                        }
+
+                }
+        }
         stage('Login to DockerHub') {
 			steps {
-				echo "PATH is: ${env.PATH}"
 				sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
 				echo 'Login Completed'
 			}
