@@ -1,7 +1,8 @@
 pipeline {
     agent { label 'slave1' }
     environment {
-    	DOCKERHUB_CREDENTIALS= credentials('dockerhubcredentials')
+    	DOCKERHUB_CREDENTIALS = credentials('dockerhubcredentials')
+	LAUNCH_DIAGNOSTICS = true
 	}
     stages {
         stage("Git checkout") {
