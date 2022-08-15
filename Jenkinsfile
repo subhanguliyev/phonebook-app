@@ -32,7 +32,6 @@ pipeline {
              steps {
 		 dir('tests') {
 		    script {
-		    	LAUNCH_DIAGNOSTICS = true
 		    	sh "python -m pytest test_app.py"
 		        echo 'Test Completed'
                 	}
