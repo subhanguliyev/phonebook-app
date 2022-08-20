@@ -38,6 +38,19 @@ pipeline {
 		    }
 	         }
         }
+	 stage('SonarQube analysis') {
+             steps {
+                 dir('tests') {
+                    script {
+                        sh """
+				sonar-scanner.bat -D"sonar.projectKey=sonarqube-flask" -D"sonar.sources=." -D"sonar.host.url=http://localhost:9000" -D"sonar.login=f3d99ebef8b3767dd9e4b11f4b38446cf348811d"
+			"""
+                        echo 'Sonarqube tested'
+                        }
+                    }
+                 }
+        }
+
 	 stage('Initialize Docker'){
             steps {
                 script{
